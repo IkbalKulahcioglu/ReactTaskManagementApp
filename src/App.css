@@ -7,6 +7,9 @@
 .task-create{
     width: 450px;
 }
+.task-edit{
+    width: 100%;
+}
 .task-form{
     display: flex;
     flex-direction: column;
@@ -31,3 +34,47 @@
     color:white;
     font-size: 15px;
 }
+
+.update-button{
+    background-color: rgb(43, 174, 226);
+    border: none;
+    border-radius: 20px;
+}
+
+.task-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.task-show{
+    border: 1px solid purple;
+    border-radius: 10px;
+    width: 250px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
+
+.task-delete{
+    width: 70px;
+    padding: 5px;
+    font-size: 15px;
+    border: none;
+    border-radius: 30px;
+    background-color: plum;
+    color: #fff;
+    margin-right: 10px;
+}
+
+.task-update{
+    width: 70px;
+    padding: 5px;
+    font-size: 15px;
+    border: none;
+    border-radius: 30px;
+    background-color: yellowgreen;
+    color:#fff ;
+}
+

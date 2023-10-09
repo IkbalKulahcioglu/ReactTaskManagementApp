@@ -1,30 +1,76 @@
 import { useState } from "react";
-function TaskCreate({onCreate}) {
-  const [title, setTitle] = useState("");
-  const [text, setText] = useState("");
+function TaskCreate({ onCreate, task, taskfromUpdate, onUpdate }) {
+  const [title, setTitle] = useState(task ? task.title : "");
+  const [text, setText] = useState(task ? task.text : "");
 
   const handleChange = (event) => {
     setTitle(event.target.value);
   };
   const handleTextChange = (event) => {
     setText(event.target.value);
-  }
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
-    onCreate(title, text);
-    setTitle('');
-    setText('');
-  }
+    if (taskfromUpdate) {
+      onUpdate(task.id, title, text);
+    } else {
+      onCreate(title, text);
+    }
+
+    setTitle("");
+    setText("");
+  };
   return (
-    <div className="task-create">
-      <h3> Lütfen Task Ekleyiniz!</h3>
-      <form className="task-form">
-        <label className="task-lable">Başlık</label>
-        <input value={title} onChange={handleChange} className="task-input" />
-        <label className="task-lable">Task Giriniz</label>
-        <textarea value={text} onChange={handleTextChange} className="task-input" rows={5} />
-        <button className="task-button" onClick={handleSubmit}>Oluştur</button>
-      </form>
+    <div>
+      {""}
+      {taskfromUpdate ? (
+        <div className="task-edit">
+          <h3>Please Edit The Task!</h3>
+          <form className="task-form">
+            <label className="task-lable">Edit The Title</label>
+            <input
+              value={title}
+              onChange={handleChange}
+              className="task-input"
+            />
+            <label className="task-lable">Edit The Task Description</label>
+            <textarea
+              value={text}
+              onChange={handleTextChange}
+              className="task-input"
+              rows={5}
+            />
+            <button
+              className="task-button update-button"
+              onClick={handleSubmit}
+            >
+              Update
+            </button>
+          </form>
+        </div>
+      ) : (
+        <div className="task-create">
+          <h3>Please Add Task!</h3>
+          <form className="task-form">
+            <label className="task-lable">Title</label>
+            <input
+              value={title}
+              onChange={handleChange}
+              className="task-input"
+            />
+            <label className="task-lable">Task Description</label>
+            <textarea
+              value={text}
+              onChange={handleTextChange}
+              className="task-input"
+              rows={5}
+            />
+            <button className="task-button" onClick={handleSubmit}>
+              Create
+            </button>
+          </form>
+        </div>
+      )}
     </div>
   );
 }
